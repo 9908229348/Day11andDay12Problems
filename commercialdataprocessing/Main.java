@@ -3,8 +3,9 @@ package commercialdataprocessing;
 import java.util.Scanner;
 
 public class Main {
+	static double totalValue = 0;
+
 	public static void main(String[] args) {
-		double totalValue = 0;
 		Company company = new Company();
 		company.setStockSymbol("TATA");
 		company.setNumOfShares(100);
@@ -19,6 +20,7 @@ public class Main {
 		while (check == true) {
 			System.out.println("Enter 1.Buy the Company Shares 2.Sell the Company Shares 3.Display ");
 			int choice = scan.nextInt();
+			scan.nextLine();
 			switch (choice) {
 			case 1:
 				Company companies = new Company();
@@ -27,12 +29,9 @@ public class Main {
 				stock.buy(companies);
 				break;
 			case 2:
-				Scanner sc = new Scanner(System.in);
-				System.out.println("Enter name of company you want to sell");
-				String name = sc.nextLine();
-				if (company.getStockSymbol().equalsIgnoreCase(name))
-					stock.sell(company);
-				totalValue = totalValue - company.getTotalValueOfShares();
+				Company companyremove = new Company();
+				stock.sell(companyremove);
+				totalValue = totalValue - companyremove.getTotalValueOfShares();
 				break;
 			case 3:
 				System.out.println("StockAccount");
